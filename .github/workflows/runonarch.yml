@@ -11,7 +11,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu18.04
+    runs-on: ubuntu-22.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -23,7 +23,7 @@ jobs:
       uses: uraimo/run-on-arch-action@v2.5.0
       with:
         arch: armv7
-        distro: ubuntu18.04
+        distro: ubuntu22.04
         githubToken: ${{ github.token }}
         install: |
             echo "Install packages"
@@ -31,7 +31,7 @@ jobs:
         run: |
           echo "system installed"
       
-    - name : Build system (qemu)
+    - name : Check system 1
       uses: uraimo/run-on-arch-action@v2.5.0
       with:
         arch: armv7
@@ -41,6 +41,14 @@ jobs:
             echo "Install packages"
             apt-get update && apt-get install python3
         run: |
+          echo "this step will run"
           python3 --version
           
-          
+    - name : Check system 2
+      uses: uraimo/run-on-arch-action@v2.5.0
+      with:
+        arch: armv7
+        distro: ubuntu-latest
+        run: |
+          echo "this step won't"
+          python3 --version
