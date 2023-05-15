@@ -27,7 +27,7 @@ jobs:
         githubToken: ${{ github.token }}
         install: |
             echo "Install packages"
-            apt-get update && apt-get install python3
+            apt-get update && apt-get -y install python3
         run: |
           echo "system installed"
       
