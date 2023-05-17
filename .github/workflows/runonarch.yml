@@ -53,5 +53,15 @@ jobs:
             echo "Install packages"
             apt-get update && apt-get -y install python3
         run: |
+          echo "this step will also run"
+          python3 --version
+          
+    - name : Check system 3
+      uses: uraimo/run-on-arch-action@v2.5.0
+      with:
+        arch: armv7
+        distro: ubuntu22.04
+        githubToken: ${{ github.token }}
+        run: |
           echo "this step will fail"
           python3 --version
