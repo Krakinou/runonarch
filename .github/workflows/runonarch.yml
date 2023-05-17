@@ -1,24 +1,14 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Check run on arch
 
-# Controls when the workflow will run
 on:
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-22.04
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name : Checkout
-      uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
     - name : Build system
       uses: uraimo/run-on-arch-action@v2.5.0
       with:
@@ -31,7 +21,7 @@ jobs:
         run: |
           echo "system installed"
       
-    - name : Check system 1
+    - name : Check system 1 - Token & install
       uses: uraimo/run-on-arch-action@v2.5.0
       with:
         arch: armv7
@@ -44,17 +34,7 @@ jobs:
           echo "this step will run"
           python3 --version
 
-    - name : Check system 2
-      uses: uraimo/run-on-arch-action@v2.5.0
-      with:
-        arch: armv7
-        distro: ubuntu22.04
-        run: |
-          echo "this step will fail"
-          python3 --version
-
-
-    - name : Check system 3
+    - name : Check system 2 - Install only
       uses: uraimo/run-on-arch-action@v2.5.0
       with:
         arch: armv7
@@ -63,19 +43,10 @@ jobs:
             echo "Install packages"
             apt-get update && apt-get -y install python3
         run: |
-          echo "this step will also run"
+          echo "this step will also run but will reinstall everything"
           python3 --version
 
-    - name : Check system 3
-      uses: uraimo/run-on-arch-action@v2.5.0
-      with:
-        arch: armv7
-        distro: ubuntu22.04
-        run: |
-          echo "this step will fail"
-          python3 --version
-          
-    - name : Check system 4
+    - name : Check system 3 - Token only
       uses: uraimo/run-on-arch-action@v2.5.0
       with:
         arch: armv7
