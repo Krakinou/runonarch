@@ -49,6 +49,7 @@ jobs:
       with:
         arch: armv7
         distro: ubuntu22.04
+        githubToken: ${{ github.token }}
         run: |
           echo "this step won't"
           python3 --version
