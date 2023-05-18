@@ -26,10 +26,6 @@ jobs:
         - { qemu_arch: armv7,   appimage_arch: armhf }
         - { qemu_arch: aarch64, appimage_arch: aarch64 }
 
-    env:
-
-
-
     steps:
 
     - name : test matrix
