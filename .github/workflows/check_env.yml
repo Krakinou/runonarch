@@ -5,7 +5,15 @@ on:
 
 env:
   env_test: 3.26.3
-
+  run_test: |
+        case "${{ matrix.qemu_arch }}" in 
+          aarch64)
+            echo "This is arch64"
+            ;;
+          armv7)
+            echo "This is armv7"
+            ;;
+          esac
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -19,15 +27,7 @@ jobs:
         - { qemu_arch: aarch64, appimage_arch: aarch64 }
 
     env:
-      run_test: |
-        case "${{ matrix.qemu_arch }}" in 
-          aarch64)
-            echo "This is arch64"
-            ;;
-          armv7)
-            echo "This is armv7"
-            ;;
-          esac
+
 
 
     steps:
@@ -39,7 +39,7 @@ jobs:
         distro: ubuntu22.04
         githubToken: ${{ github.token }}
         install: |
-            ${{ jobs.build.env.run_test }}
+            ${{ env.run_test }}
             echo "this is ${{ env.env_test }}"
         run: |
           echo "system installed"
