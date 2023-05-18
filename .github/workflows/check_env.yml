@@ -6,6 +6,7 @@ on:
 env:
   env_test: 3.26.3
   run_test: |
+        echo "${{ env_test }}"
         echo "This is"
 
 jobs:
@@ -22,7 +23,7 @@ jobs:
 
     env:
       env_test_2: "${{ matrix.qemu_arch }}"
-      env_test_3: ${{ env.env_test }}"
+
 
     steps:
 
@@ -34,7 +35,7 @@ jobs:
         githubToken: ${{ github.token }}
         install: |
             ${{ env.run_test }}
-            case "${{ matrix.qemu_arch }}" in 
+            case ${{ env.env_test_2 }}" in 
               aarch64)
                 echo " arch64"
                 ;;
@@ -44,7 +45,5 @@ jobs:
               esac
             
             echo "this is ${{ env.env_test }}"
-            echo "this is ${{ env.env_test_2 }}"
-            echo "this is ${{ env.env_test_3 }}"
         run: |
           echo "system installed"
