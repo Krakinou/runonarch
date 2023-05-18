@@ -22,6 +22,7 @@ jobs:
 
     env:
       env_test_2: "${{ matrix.qemu_arch }}"
+      env_test_3: ${{ env.env_test }}"
 
     steps:
 
@@ -44,5 +45,6 @@ jobs:
             
             echo "this is ${{ env.env_test }}"
             echo "this is ${{ env.env_test_2 }}"
+            echo "this is ${{ env.env_test_3 }}"
         run: |
           echo "system installed"
