@@ -6,7 +6,7 @@ on:
 env:
   env_test: 3.26.3
   run_test: |
-        echo "${{ env_test }}"
+        echo "${{ env.env_test }}"
         echo "This is"
 
 jobs:
