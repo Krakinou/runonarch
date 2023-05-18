@@ -4,9 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  env_test: 3.26.3
+  Vcmake: 3.26.3
   run_test: |
-        echo "${{ env.env_test }}"
         echo "This is"
 
 jobs:
@@ -37,7 +36,8 @@ jobs:
             ${{ env.run_test }}
             case ${{ env.env_test_2 }}" in 
               aarch64)
-                echo " arch64"
+                apt-get -y install tar wget curl;
+                curl -sSL https://github.com/Kitware/CMake/releases/download/v"${{ env.Vcmake }}"/cmake-"${{ env.Vcmake }}"-linux-aarch64.tar.gz -o cmake.tar.gz;
                 ;;
               armv7)
                 echo " armv7"
