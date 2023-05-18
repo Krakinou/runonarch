@@ -5,6 +5,7 @@ on:
 
 env:
   env_test: 3.26.3
+  run_test: apt-get update
 
 jobs:
   build:
@@ -36,5 +37,6 @@ jobs:
                 ;;
               esac
               echo "this is ${{ env.env_test }}"
+              ${{ env.run_test }}
         run: |
           echo "system installed"
