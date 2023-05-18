@@ -3,9 +3,13 @@ name: Pass variable to install
 on:
   workflow_dispatch:
 
+env:
+  env_test: "toto"
+
 jobs:
   build:
     runs-on: ubuntu-22.04
+
 
     strategy:
       fail-fast: false
@@ -31,5 +35,6 @@ jobs:
                 echo "This is armv7"
                 ;;
               esac
+              echo "this is ${{ env.env_test }}"
         run: |
           echo "system installed"
