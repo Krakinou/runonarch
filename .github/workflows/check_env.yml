@@ -20,6 +20,9 @@ jobs:
         - { qemu_arch: armv7,   appimage_arch: armhf }
         - { qemu_arch: aarch64, appimage_arch: aarch64 }
 
+    env:
+      env_test_2: "toto"
+
     steps:
 
     - name : test matrix
@@ -40,6 +43,6 @@ jobs:
               esac
             
             echo "this is ${{ env.env_test }}"
-            
+            echo "this is ${{ env_test_2 }}"
         run: |
           echo "system installed"
