@@ -28,7 +28,7 @@ jobs:
             echo "This is armv7"
             ;;
           esac
-          echo "this is ${{ jobs.build.env.env_test }}"
+          echo "this is ${{ build.env.env_test }}"
 
     steps:
 
@@ -39,6 +39,6 @@ jobs:
         distro: ubuntu22.04
         githubToken: ${{ github.token }}
         install: |
-            ${{ jobs.build.env.run_test }}
+            ${{ build.env.run_test }}
         run: |
           echo "system installed"
