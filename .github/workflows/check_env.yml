@@ -3,7 +3,8 @@ name: Pass variable to install
 on:
   workflow_dispatch:
 
-
+env:
+  env_test: 3.26.3
 
 jobs:
   build:
@@ -18,7 +19,6 @@ jobs:
         - { qemu_arch: aarch64, appimage_arch: aarch64 }
 
     env:
-      env_test: 3.26.3
       run_test: |
         case "${{ matrix.qemu_arch }}" in 
           aarch64)
@@ -28,7 +28,7 @@ jobs:
             echo "This is armv7"
             ;;
           esac
-          echo "this is ${{ build.env.env_test }}"
+          echo "this is ${{ env.env_test }}"
 
     steps:
 
@@ -39,6 +39,6 @@ jobs:
         distro: ubuntu22.04
         githubToken: ${{ github.token }}
         install: |
-            ${{ build.env.run_test }}
+            ${{ jobs.build.env.run_test }}
         run: |
           echo "system installed"
