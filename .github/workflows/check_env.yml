@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  env_test: "toto"
+  env_test: 3.26.3
 
 jobs:
   build:
