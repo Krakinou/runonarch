@@ -28,7 +28,7 @@ jobs:
             echo "This is armv7"
             ;;
           esac
-          echo "this is ${{ env.env_test }}"
+
 
     steps:
 
@@ -40,5 +40,6 @@ jobs:
         githubToken: ${{ github.token }}
         install: |
             ${{ jobs.build.env.run_test }}
+            echo "this is ${{ env.env_test }}"
         run: |
           echo "system installed"
