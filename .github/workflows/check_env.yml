@@ -28,13 +28,13 @@ jobs:
             case "${{ matrix.qemu_arch }}" in 
               aarch64)
                 echo " aarch64";
-                apt-get update && apt-get -y install tar wget curl;
+                echo "This is the install step";
                 ;;
               armv7)
                 echo " armv7";
-                apt-get update && apt-get -y install tar wget curl;
+                echo "This is the install step";
                 ;;
               esac
 
         run: |
-          echo "system installed"
+          echo "system installed : This is the run step"
