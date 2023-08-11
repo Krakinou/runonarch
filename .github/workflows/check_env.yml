@@ -15,15 +15,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        - { qemu_arch: armv7,   appimage_arch: armhf }
-        - { qemu_arch: aarch64, appimage_arch: aarch64 }
+        - { qemu_arch: armv7 }
+        - { qemu_arch: aarch64 }
 
     steps:
 
     - name : test matrix
       uses: uraimo/run-on-arch-action@v2.5.0
       with:
-        arch: armv7
+        arch: ${{ matrix.qemu_arch }}
         distro: ubuntu22.04
         githubToken: ${{ github.token }}
         install: |
