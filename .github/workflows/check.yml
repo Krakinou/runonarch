@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 env:
-  Vcmake: 3.27.9
+  Vcmake: 3.27.6
 
 jobs:
   build:
