@@ -1,0 +1,43 @@
+name: Check container build
+on:
+  workflow_dispatch:
+
+env:
+  Vcmake: 3.26.3
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - qemu_arch: armv7
+            qemu_distro: ubuntu22.04
+          - qemu_arch: aarch64
+            qemu_distro: ubuntu22.04
+
+    steps:
+
+    - name : Step 1
+      uses: uraimo/run-on-arch-action@v.2.5.1
+      with:
+        arch: ${{ matrix.qemu_arch }}
+        distro: ${{ matrix.qemu_distro }}
+        githubToken: ${{ github.token }}
+        install: |
+            case "${{ matrix.qemu_arch }}" in 
+              aarch64)
+                apt-get update && apt-get -y install tar wget curl;
+                curl -sSL https://github.com/Kitware/CMake/releases/download/v"${{ env.Vcmake }}"/cmake-"${{ env.Vcmake }}"-linux-aarch64.tar.gz -o cmake.tar.gz;
+                tar xf cmake.tar.gz;
+                ;;
+              armv7)
+                echo " armv7";
+                ;;
+              esac
+
+        run: |
+          echo "system installed : This is the run step"
