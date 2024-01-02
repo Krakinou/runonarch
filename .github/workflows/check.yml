@@ -1,4 +1,4 @@
-name: Check container build
+name: Check tar file
 on:
   workflow_dispatch:
 
@@ -15,9 +15,9 @@ jobs:
       matrix:
         include:
           - qemu_arch: armv7
-            qemu_distro: ubuntu22.04
+            qemu_distro: ubuntu20.04
           - qemu_arch: aarch64
-            qemu_distro: ubuntu22.04
+            qemu_distro: ubuntu20.04
 
     steps:
 
